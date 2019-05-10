@@ -41,3 +41,14 @@
 		transform: none !important;
 		opacity: 1 !important;
 	}
+
+	.image-code-icon {
+		width: 7%;
+		background: white;
+		margin: 0px;
+		position: absolute;
+		padding: 10px;
+		left: 52px;
+		border-radius: 50%;
+	}
+	
