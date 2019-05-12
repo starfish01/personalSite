@@ -1,19 +1,32 @@
-<div class="inner">
-  <nav>
-    <ul>
-      <li><a href="#intro">Welcome</a></li>
-      <li><a href="#one">Projects Worked On</a></li>
-      <li><a href="#two">Courses Completed</a></li>
+<section id="sidebar">
+  <div class="inner">
+    <nav class="desktop-nav-menu">
+      <ul>
+        <li><a href="#intro">Welcome</a></li>
+        <li><a href="#one">Projects Worked On</a></li>
+        <li><a href="#two">Courses Completed</a></li>
+        <li><a href="#three">Get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="mobile-nav">
+    <div class="block">
+        <button mat-button [matMenuTriggerFor]="menu"><img class="mobile-nav-button" src="../../../assets/images/menuIcon.svg"></button>
+      <!-- <img src="../../../assets/images/menuIcon.svg"> -->
+    </div>
+    
 
-      <li><a href="#three">Get in touch</a></li>
-    </ul>
-  </nav>
-</div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item ><a href="#intro">Welcome</a></button>
+      <button mat-menu-item><a href="#one">Projects Worked On</a></button>
+      <button mat-menu-item><a href="#two">Courses Completed</a></button>
+      <button mat-menu-item><a href="#three">Get in touch</a></button>
+      
+      
+    </mat-menu>
 
-<button mat-button>Click me!</button>
+
+  </div>
 
 
-<!-- 
-<button mat-icon-button>
-  <mat-icon>more_vert</mat-icon>
-</button> -->
+</section>
