@@ -11,6 +11,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Page1Component } from './homepage/page1/page1.component';
 
 
 
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     HomepageComponent,
     AuthComponent,
-    HeaderComponent
+    HeaderComponent,
+    Page1Component
   ],
   imports: [
     BrowserModule,
