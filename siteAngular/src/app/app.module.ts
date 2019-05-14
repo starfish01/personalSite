@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Page1Component } from './homepage/page1/page1.component';
+import { ProjectsComponent } from './homepage/projects/projects.component';
 
 
 
@@ -21,7 +22,8 @@ import { Page1Component } from './homepage/page1/page1.component';
     HomepageComponent,
     AuthComponent,
     HeaderComponent,
-    Page1Component
+    Page1Component,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
