@@ -21,8 +21,25 @@ import { ContactComponent } from './homepage/contact/contact.component';
 import { CoursesComponent } from './homepage/courses/courses.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-// import { CoreComponent } from './auth/core/core.component';
+
+import {RegisterComponent} from './auth/register/register.component'
+
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './auth/core/auth.service';
+import { UserService } from './auth/core/user.service';
+import { AuthGuard } from './auth/core/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
+
+
+export const firebaseConfig = environment.firebaseConfig;
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { UserResolver } from './auth/core/user.resolver';
+
+
+//admin
+
+
 
 
 @NgModule({
@@ -44,12 +61,15 @@ import { RegisterComponent } from './auth/register/register.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    ReactiveFormsModule,
+    HttpClientModule,
     MatMenuModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [AuthService, UserService,RegisterComponent, AuthGuard, UserResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

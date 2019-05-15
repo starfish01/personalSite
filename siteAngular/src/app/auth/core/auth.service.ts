@@ -1,88 +1,111 @@
 import { Injectable } from "@angular/core";
-// import 'rxjs/add/operator/toPromise';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
+
+
+interface User {
+  uid: string,
+  email: string,
+  authStatus: number
+}
 
 @Injectable()
 export class AuthService {
 
-  constructor(
-   public afAuth: AngularFireAuth
- ){}
 
-  doFacebookLogin(){
-    return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.FacebookAuthProvider();
-      this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(res => {
-        resolve(res);
-      }, err => {
-        console.log(err);
-        reject(err);
-      })
+  userToken: string;
+  authStatus: number;
+  token: string;
+
+  private authState: any;
+
+  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore) {
+    this.afAuth.authState.subscribe((auth) => {
+      this.authState = auth
     })
   }
 
-  doTwitterLogin(){
-    return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.TwitterAuthProvider();
-      this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(res => {
-        resolve(res);
-      }, err => {
-        console.log(err);
-        reject(err);
-      })
+  get authStateLive() {
+    return this.afAuth.authState.subscribe((data)=>{
+      //console.log(data)
+      return data.uid
     })
+    
   }
 
-  doGoogleLogin(){
+  isAuthenticated() {
+    return this.authState !== null;
+  }
+
+  doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
       this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(res => {
-        resolve(res);
-      }, err => {
-        console.log(err);
-        reject(err);
-      })
+        .signInWithPopup(provider)
+        .then(res => {
+          this.updateUserData(res.user)
+          resolve(res);
+        })
     })
   }
 
-  doRegister(value){
+  private updateUserData(user) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+
+    const data: User = {
+      uid: user.uid,
+      email: user.email,
+      authStatus: 1
+    }
+
+    userRef.set(data, { merge: true })
+
+  }
+
+
+
+  doRegister(value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-      .then(res => {
-        resolve(res);
-      }, err => reject(err))
+        .then(res => {
+
+          this.updateUserData(res.user)
+          resolve(res);
+        }, err => reject(err))
     })
   }
 
-  doLogin(value){
+  doLogin(value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-      .then(res => {
-        resolve(res);
-      }, err => reject(err))
+        .then(res => {
+         
+          this.updateUserData(res.user)
+
+          resolve(res);
+        }, err => reject(err))
     })
   }
 
-  doLogout(){
+
+  doLogout() {
     return new Promise((resolve, reject) => {
-      if(firebase.auth().currentUser){
+      if (firebase.auth().currentUser) {
         this.afAuth.auth.signOut();
+        // this.store.dispatch(new )
+
+        this.userToken = null;
+        this.authState = null;
         resolve();
       }
-      else{
+      else {
         reject();
       }
     });
   }
-
 
 }

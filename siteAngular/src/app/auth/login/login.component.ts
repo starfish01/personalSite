@@ -1,60 +1,61 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../core/auth.service'
-import { Router, Params } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../core/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.component.html'
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  errorMessage: string = '';
 
-  constructor(
-    public authService: AuthService,
-    private router: Router,
-    private fb: FormBuilder
-  ) {
-    this.createForm();
+  loading = false;
+
+  constructor(private authService: AuthService, private router:Router) { }
+
+  ngOnInit() {
+    this.initForm();
   }
 
-  createForm() {
-    this.loginForm = this.fb.group({
-      email: ['', Validators.required ],
-      password: ['',Validators.required]
-    });
-  }
-
-  tryFacebookLogin(){
-    this.authService.doFacebookLogin()
-    .then(res => {
-      this.router.navigate(['/user']);
-    })
-  }
-
-  tryTwitterLogin(){
-    this.authService.doTwitterLogin()
-    .then(res => {
-      this.router.navigate(['/user']);
-    })
+  onSubmit() {
+    
   }
 
   tryGoogleLogin(){
     this.authService.doGoogleLogin()
     .then(res => {
-      this.router.navigate(['/user']);
+      this.router.navigate(['/admin']);
     })
   }
 
-  tryLogin(value){
+  tryLogin(){
+    this.loading = true;
+    let value = this.loginForm.value;
+    
     this.authService.doLogin(value)
     .then(res => {
-      this.router.navigate(['/user']);
+      console.log(res)
+      this.loading = false;
+      this.router.navigate(['/admin']);
     }, err => {
+      this.loading = false;
       console.log(err);
-      this.errorMessage = err.message;
     })
   }
+
+  private initForm() {
+    let email = '';
+    let password ='';
+
+    this.loginForm = new FormGroup({
+      'email': new FormControl(email,[Validators.required,Validators.email]),
+      'password': new FormControl(password,[Validators.required,Validators.minLength(6)]),
+    })
+
+  }
+
 }
