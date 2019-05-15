@@ -19,6 +19,10 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { ContactComponent } from './homepage/contact/contact.component';
 import { CoursesComponent } from './homepage/courses/courses.component';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+// import { CoreComponent } from './auth/core/core.component';
 
 
 @NgModule({
@@ -30,7 +34,11 @@ import { CoursesComponent } from './homepage/courses/courses.component';
     Page1Component,
     ProjectsComponent,
     ContactComponent,
-    CoursesComponent
+    CoursesComponent,
+    AdminComponent,
+    LoginComponent,
+    RegisterComponent,
+    // CoreComponent
   ],
   imports: [
     BrowserModule,
