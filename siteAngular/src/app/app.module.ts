@@ -35,6 +35,9 @@ import { HttpClientModule } from '@angular/common/http';
 export const firebaseConfig = environment.firebaseConfig;
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UserResolver } from './auth/core/user.resolver';
+import { HomeComponent } from './admin/home/home.component';
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { AdminModule } from './admin/admin.module';
 
 
 //admin
@@ -55,6 +58,8 @@ import { UserResolver } from './auth/core/user.resolver';
     AdminComponent,
     LoginComponent,
     RegisterComponent,
+    HomeComponent,
+    // AdminModule
     // CoreComponent
   ],
   imports: [
@@ -66,6 +71,8 @@ import { UserResolver } from './auth/core/user.resolver';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     ReactiveFormsModule,
     HttpClientModule,
+    AdminRoutingModule,
+    AdminModule,
     MatMenuModule,
     MatButtonModule
   ],

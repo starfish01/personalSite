@@ -12,6 +12,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: RegisterComponent},
   { path: 'admin', component: AdminComponent,resolve: { data: UserResolver }},
+  // { path: '', redirectTo: '/admin', pathMatch: 'full' },
+
   { path: "**", redirectTo: '' }    
 ];
 
