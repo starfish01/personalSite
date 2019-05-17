@@ -1,0 +1,12 @@
+  <h1>
+    {{pageOn.title}}
+  </h1>
+
+<p>overview works!</p>
+
+
+<section *ngFor="let project of (projects | async)">
+
+  <code>{{ project }}</code>
+
+</section>

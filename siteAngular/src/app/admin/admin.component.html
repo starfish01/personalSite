@@ -4,7 +4,7 @@
     <header class="main-header">
 
       <!-- Logo -->
-      <a href="/" class="logo">
+      <a href='admin/' class="logo">
         <span class="logo-lg">Admin</span>
       </a>
 
@@ -81,12 +81,15 @@
           
           
           <li>
-            <a href="pages/calendar.html">
+              <!-- <button routerLink="/sidekicks">Go to sidekicks</button> -->
+
+
+            <a [routerLink]="['overview','projects']" href="#">
               <i class="fa fa-calendar"></i> <span>Projects</span>
             </a>
           </li>
           <li>
-            <a href="pages/mailbox/mailbox.html">
+              <a [routerLink]="['overview','courses']" href="#">
               <i class="fa fa-envelope"></i> <span>Courses</span>
             </a>
           </li>
@@ -101,9 +104,9 @@
 
     <div class="content-wrapper">
       <section class="content-header">
-        <h1>
+        <!-- <h1>
           Dashboard
-        </h1>
+        </h1> -->
         <!-- <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
           <li class="active">Dashboard</li>
@@ -112,7 +115,7 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
               <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
@@ -158,9 +161,8 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <app-home></app-home>
         <router-outlet></router-outlet>
       
       </section>

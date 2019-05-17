@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
+import { OverviewComponent } from './overview/overview.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [OverviewComponent],
   imports: [
     CommonModule,
     AdminRoutingModule

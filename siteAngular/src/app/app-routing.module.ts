@@ -6,13 +6,18 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserResolver } from './auth/core/user.resolver';
+import { HomeComponent } from './admin/home/home.component';
+import { ProjectsComponent } from './homepage/projects/projects.component';
+import { OverviewComponent } from './admin/overview/overview.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: RegisterComponent},
   { path: 'admin', component: AdminComponent,resolve: { data: UserResolver }},
-  // { path: '', redirectTo: '/admin', pathMatch: 'full' },
+  { path: 'admin', component: AdminComponent,resolve: { data: UserResolver }, children: [
+    { path: 'overview/:id', component: OverviewComponent },
+  ]},
 
   { path: "**", redirectTo: '' }    
 ];

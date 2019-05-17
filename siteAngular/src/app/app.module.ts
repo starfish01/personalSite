@@ -37,12 +37,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UserResolver } from './auth/core/user.resolver';
 import { HomeComponent } from './admin/home/home.component';
 import { AdminRoutingModule } from './admin/admin-routing.module';
-import { AdminModule } from './admin/admin.module';
-
-
-//admin
-
-
+import { AdminModule } from './admin/admin.module'
 
 
 @NgModule({
