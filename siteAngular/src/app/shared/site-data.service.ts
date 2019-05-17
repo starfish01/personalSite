@@ -19,5 +19,9 @@ export class SiteDataService {
     return this.db.collection('projects').valueChanges();
   }
 
+  getEdits(value){
+    return this.db.collection(value).valueChanges();
+  }
+
 
 }

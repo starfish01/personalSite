@@ -27,17 +27,19 @@ export class OverviewComponent implements OnInit {
    .subscribe(
      (params: Params) => {
        this.pageOn.title = params['id'];
+       this.getProjects();
        }
    );
+
    this.getProjects()
+  
 
   }
 
   projects: Observable<any[]>;
 
   getProjects(){
-    console.log('yes')
-    this.projects = this.sitedata.getProjects();
+    this.projects = this.sitedata.getEdits(this.pageOn.title);
   }
 
 }
