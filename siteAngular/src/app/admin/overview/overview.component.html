@@ -2,11 +2,27 @@
     {{pageOn.title}}
   </h1>
 
-<p>overview works!</p>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th> 
+      <th>Icon</th>
+      <th>URL</th>
+      <th>Enabled</th>
+      <th>Edit</th>
+    </tr>
 
+    <tr *ngFor="let project of (projects | async)">
+      <td>{{ project.title }}</td>
+      <td>{{ project.description }}</td> 
+      <td><i class="material-icons">{{project.icon}}</i></td>
+      <td><a href="{{ project.buttonUrl }}" target="_blank">Click Here</a></td>
+      <th>{{ project.enabled }}</th>
+      <th>Edit</th>
+    </tr>
+   
+  </table>
 
-<section *ngFor="let project of (projects | async)">
-
-  <code>{{ project }}</code>
-
-</section>
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+  </div>

@@ -31,6 +31,8 @@ import { UserService } from './auth/core/user.service';
 import { AuthGuard } from './auth/core/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 export const firebaseConfig = environment.firebaseConfig;
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -69,7 +71,8 @@ import { AdminModule } from './admin/admin.module'
     AdminRoutingModule,
     AdminModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    DragDropModule
   ],
   providers: [AuthService, UserService,RegisterComponent, AuthGuard, UserResolver],
   bootstrap: [AppComponent]
