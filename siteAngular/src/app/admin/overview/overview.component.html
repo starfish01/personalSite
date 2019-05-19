@@ -1,28 +1,34 @@
-  <h1>
-    {{pageOn.title}}
-  </h1>
+<h1>{{pageOn.title}}</h1>
 
-  <table>
+<div class="addbutton">
+    <button mat-raised-button>+ Item</button>
+</div>
+
+
+<table>
+  <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th> 
+      <th>Description</th>
       <th>Icon</th>
       <th>URL</th>
       <th>Enabled</th>
-      <th>Edit</th>
+      <th></th>
     </tr>
+  </thead>
+  <tbody cdkDropList (cdkDropListDropped)="drop($event)">
 
-    <tr *ngFor="let project of (projects | async)">
+    <tr *ngFor="let project of listProjects" cdkDrag>
+
       <td>{{ project.title }}</td>
-      <td>{{ project.description }}</td> 
+      <td>{{ project.description }}</td>
       <td><i class="material-icons">{{project.icon}}</i></td>
       <td><a href="{{ project.buttonUrl }}" target="_blank">Click Here</a></td>
       <th>{{ project.enabled }}</th>
-      <th>Edit</th>
-    </tr>
-   
-  </table>
+      <th><button mat-raised-button (click)="editItem(project.title)">Edit</button></th>
 
-  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
-  </div>
+    </tr>
+
+  </tbody>
+
+</table>

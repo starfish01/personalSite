@@ -31,7 +31,6 @@ import { UserService } from './auth/core/user.service';
 import { AuthGuard } from './auth/core/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 
-import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 export const firebaseConfig = environment.firebaseConfig;
@@ -40,6 +39,11 @@ import { UserResolver } from './auth/core/user.resolver';
 import { HomeComponent } from './admin/home/home.component';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { AdminModule } from './admin/admin.module'
+
+
+
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -69,10 +73,12 @@ import { AdminModule } from './admin/admin.module'
     ReactiveFormsModule,
     HttpClientModule,
     AdminRoutingModule,
+    MatCardModule,
     AdminModule,
+    DragDropModule,
     MatMenuModule,
-    MatButtonModule,
-    DragDropModule
+    MatButtonModule
+    
   ],
   providers: [AuthService, UserService,RegisterComponent, AuthGuard, UserResolver],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ import { Subscription, Observable } from 'rxjs';
 import { SiteDataService } from 'src/app/shared/site-data.service';
 import { DocumentTypesService } from 'src/app/shared/document-types.service';
 
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 
 
@@ -28,14 +28,11 @@ movies = [
   'Episode VIII - The Last Jedi'
 ];
 
-drop(event: CdkDragDrop<string[]>) {
-  moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+drop(event: CdkDragDrop<any[]>) {
+  moveItemInArray(this.listProjects, event.previousIndex, event.currentIndex);
 }
 
-
-
-
-
+  listProjects=[];
 
   pageOn: { title: string }
   paramsSubscription: Subscription
@@ -56,7 +53,6 @@ drop(event: CdkDragDrop<string[]>) {
 
           this.checkDocument();
 
-
           this.getProjects();
         }
       );
@@ -74,6 +70,19 @@ drop(event: CdkDragDrop<string[]>) {
 
   getProjects() {
     this.projects = this.sitedata.getEdits(this.pageOn.title);
+
+    this.projects.subscribe((projectData: [])=>{
+      this.listProjects = projectData
+    });
+
+  }
+
+
+  editItem(site){
+
+    //need to slug 
+
+    this.router.navigate(['admin/edit/', site]);
   }
 
 }
