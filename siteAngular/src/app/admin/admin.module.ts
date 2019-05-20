@@ -6,6 +6,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { EditItemComponent } from './edit-item/edit-item.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +17,8 @@ import { EditItemComponent } from './edit-item/edit-item.component';
     AdminRoutingModule,
     DragDropModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

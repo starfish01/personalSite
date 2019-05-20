@@ -16,18 +16,20 @@
       <th></th>
     </tr>
   </thead>
-  <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+  <tbody >
 
-    <tr *ngFor="let project of listProjects" cdkDrag>
+
+    <tr *ngFor="let project of (projects | async)">
 
       <td>{{ project.title }}</td>
       <td>{{ project.description }}</td>
       <td><i class="material-icons">{{project.icon}}</i></td>
       <td><a href="{{ project.buttonUrl }}" target="_blank">Click Here</a></td>
       <th>{{ project.enabled }}</th>
-      <th><button mat-raised-button (click)="editItem(project.title)">Edit</button></th>
+      <th><button mat-raised-button (click)="editItem(project.id)">Edit</button></th>
 
     </tr>
+
 
   </tbody>
 

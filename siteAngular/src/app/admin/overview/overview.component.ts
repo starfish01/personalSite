@@ -79,10 +79,7 @@ drop(event: CdkDragDrop<any[]>) {
 
 
   editItem(site){
-
-    //need to slug 
-
-    this.router.navigate(['admin/edit/', site]);
+    this.router.navigate(['admin/edit/',this.pageOn.title, site]);
   }
 
 }

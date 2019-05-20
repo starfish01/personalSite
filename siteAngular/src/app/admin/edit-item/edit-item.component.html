@@ -1,20 +1,52 @@
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label for="dateOfBirth">Date of birth</label>
-        <div class="input-group">
-          <!-- <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-          </div> -->
-        </div>
+<h1>Edit</h1>
+
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Icon</th>
+      <th>URL</th>
+      <th>Enabled</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody >
+
+
+    <tr *ngFor="let project of (projects | async)">
+
+      <td>{{ project.title }}</td>
+      <td>{{ project.description }}</td>
+      <td><i class="material-icons">{{project.icon}}</i></td>
+      <td><a href="{{ project.buttonUrl }}" target="_blank">Click Here</a></td>
+      <th>{{ project.enabled }}</th>
+      <th><button mat-raised-button (click)="editItem(project.id)">Edit</button></th>
+
+    </tr>
+
+
+  </tbody>
+
+</table>
+
+<form [formGroup]="editDocument" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-xs-12">
+        <button class="btn btn-success" type="submit" [disabled]="!editDocument.valid">Save</button>
+        <!-- <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button> -->
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" >Save</button>
-  </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" formControlName="name" id="name">
+        </div>
+        
+      </div>
+    </div>
+  </form>
