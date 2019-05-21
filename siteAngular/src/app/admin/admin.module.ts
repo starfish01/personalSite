@@ -8,6 +8,11 @@ import {MatTableModule} from '@angular/material/table';
 import { EditItemComponent } from './edit-item/edit-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule, MatInputModule} from '@angular/material';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -18,7 +23,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     DragDropModule,
     MatButtonModule,
     MatTableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatIconModule,
+    
   ]
 })
 export class AdminModule { }

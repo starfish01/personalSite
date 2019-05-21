@@ -4,7 +4,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-edit-item',
   templateUrl: './edit-item.component.html',
@@ -18,7 +17,7 @@ export class EditItemComponent implements OnInit {
     id: null,
     parent: null
   }
-  
+
   editDocument: FormGroup;
 
   constructor(private router: Router, private route: ActivatedRoute, private sitedata: SiteDataService) {
@@ -30,7 +29,6 @@ export class EditItemComponent implements OnInit {
           this.documentOn.parent = params['section'];
           this.documentOn.id = params['id'];
           this.getDocument()
-          this.initForm();
         }
       );
   }
@@ -38,30 +36,50 @@ export class EditItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  projects: Observable<any>;
+  itemObservable: Observable<any>;
+  item = {
+    title:'',
+    icon:'',
+    buttonUrl:'',
+    description:'',
+    enabled:false
+  }
 
   getDocument() {
 
-    this.projects = this.sitedata.getSingleDocument(this.documentOn.parent, this.documentOn.id)
-
-    // this.projects = this.sitedata.getEdits(this.pageOn.title);
-
-    // this.projects.subscribe((projectData: [])=>{
-    //   this.listProjects = projectData
-    // });
-
+    this.itemObservable = this.sitedata.getSingleDocument(this.documentOn.parent, this.documentOn.id)
+    this.itemObservable.subscribe((data) => {
+      this.item = data[0];
+      this.initForm();
+    })
   }
 
+  displayForm = false;
 
   private initForm() {
+
+    console.log(this.item)
+
+    this.displayForm = true;
+    
     //set values
-    let title = ''
-    //etc
+    let title = this.item.title
+    let icon = this.item.icon
+    let buttonUrl = this.item.buttonUrl
+    let description = this.item.description
+    let enabled = this.item.enabled
 
     this.editDocument = new FormGroup({
-      'name': new FormControl(title,[Validators.required])
+      'title': new FormControl(title, [Validators.required]),
+      'icon': new FormControl(icon, [Validators.required]),
+      'buttonUrl': new FormControl(buttonUrl),
+      'description': new FormControl(description),
+      'enabled': new FormControl(enabled)
     })
-    
+  }
+
+  cancel(){
+    this.router.navigate(['/admin/overview', this.documentOn.parent])
   }
 
 
