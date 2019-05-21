@@ -18,17 +18,24 @@ export class EditItemComponent implements OnInit {
     parent: null
   }
 
+  addItemCheck = false;
+
   editDocument: FormGroup;
 
   constructor(private router: Router, private route: ActivatedRoute, private sitedata: SiteDataService) {
-    this.docToEdit = sitedata.getSingleDocument('projects', 'DJldi777MzhO4AbJhSDNl62')
 
     this.paramsSubscription = this.route.params
       .subscribe(
         (params: Params) => {
           this.documentOn.parent = params['section'];
-          this.documentOn.id = params['id'];
-          this.getDocument()
+          if (params['id'] == undefined) {
+            this.addItemCheck = true;
+            this.initForm();
+          } else {
+            this.documentOn.id = params['id'];
+            this.getDocument()
+          }
+
         }
       );
   }
@@ -38,11 +45,11 @@ export class EditItemComponent implements OnInit {
 
   itemObservable: Observable<any>;
   item = {
-    title:'',
-    icon:'',
-    buttonUrl:'',
-    description:'',
-    enabled:false
+    title: '',
+    icon: '',
+    buttonUrl: '',
+    description: '',
+    enabled: false
   }
 
   getDocument() {
@@ -58,10 +65,8 @@ export class EditItemComponent implements OnInit {
 
   private initForm() {
 
-    console.log(this.item)
-
     this.displayForm = true;
-    
+
     //set values
     let title = this.item.title
     let icon = this.item.icon
@@ -78,10 +83,28 @@ export class EditItemComponent implements OnInit {
     })
   }
 
-  cancel(){
+  cancel() {
     this.router.navigate(['/admin/overview', this.documentOn.parent])
   }
 
+  submit() {
 
+    if (this.addItemCheck) {
+
+      this.sitedata.addItem(this.documentOn.parent,this.editDocument.value).then((data)=>{
+        this.router.navigate(['/admin/overview', this.documentOn.parent])
+      }).catch(()=>{
+        console.log('something broke')
+      })
+
+    } else {
+      this.sitedata.updateDocument(this.editDocument.value, this.documentOn).then((data) => {
+        this.router.navigate(['/admin/overview', this.documentOn.parent])
+      }).catch(() => {
+        console.log('Something Broke...')
+      })
+    }
+
+  }
 
 }

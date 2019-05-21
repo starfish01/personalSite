@@ -1,7 +1,7 @@
 <h1>{{pageOn.title}}</h1>
 
 <div class="addbutton">
-    <button mat-raised-button>+ Item</button>
+    <button mat-raised-button (click)="addItem()">+ Item</button>
 </div>
 
 
@@ -12,7 +12,7 @@
       <th>Description</th>
       <th>Icon</th>
       <th>URL</th>
-      <th>Enabled</th>
+      <th>Live</th>
       <th></th>
     </tr>
   </thead>
@@ -25,7 +25,7 @@
       <td>{{ project.description }}</td>
       <td><i class="material-icons">{{project.icon}}</i></td>
       <td><a href="{{ project.buttonUrl }}" target="_blank">Click Here</a></td>
-      <th>{{ project.enabled }}</th>
+      <th><span *ngIf="project.enabled == '1'">Yes</span><span *ngIf="project.enabled != '1'">No</span></th>
       <th><button mat-raised-button (click)="editItem(project.id)">Edit</button></th>
 
     </tr>

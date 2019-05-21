@@ -79,7 +79,13 @@ drop(event: CdkDragDrop<any[]>) {
 
 
   editItem(site){
-    this.router.navigate(['admin/edit/',this.pageOn.title, site]);
+    let edit = 'edit'
+    this.router.navigate(['admin/',this.pageOn.title,edit, site]);
+  }
+
+  addItem(){
+    let add = 'add'
+    this.router.navigate(['admin/', this.pageOn.title,add])
   }
 
 }

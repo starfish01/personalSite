@@ -24,14 +24,14 @@
 
     <mat-form-field>
         <mat-select id="enabled" formControlName="enabled" placeholder="Live on site?">
-          <mat-option value="1">True</mat-option>
-          <mat-option value="0">false</mat-option>
+          <mat-option value="1">Yes</mat-option>
+          <mat-option value="0">No</mat-option>
         </mat-select>
       </mat-form-field>
 
 
     <div>
-      <button mat-stroked-button color="primary" [disabled]="!editDocument.valid" type="submit">Save</button>
+      <button mat-stroked-button color="primary" [disabled]="!editDocument.valid" (click)="submit()" type="button">Save</button>
       <button mat-stroked-button color="warning" (click)="cancel()">Cancel</button>
     </div>
 

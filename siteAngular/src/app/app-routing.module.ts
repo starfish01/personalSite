@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent,resolve: { data: UserResolver }},
   { path: 'admin', component: AdminComponent,resolve: { data: UserResolver }, children: [
     { path: 'overview/:id', component: OverviewComponent },
-    { path: 'edit/:section/:id', component: EditItemComponent },
+    { path: ':section/edit/:id', component: EditItemComponent },
+    { path: ':section/add', component:EditItemComponent }
   ]},
 
   { path: "**", redirectTo: '' }    
