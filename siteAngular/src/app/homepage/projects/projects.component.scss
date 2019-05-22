@@ -24,6 +24,10 @@
 }
 
 i.material-icons{
+    background: white;
+    margin-bottom: 16px;
+    padding: 10px;
+    border-radius: 32px;
     color:#92DCE5;
 }
 
@@ -37,11 +41,25 @@ i.material-icons{
 }
 
 .features section {
-    padding: 3.5em 2rem 1em 2em;
-    width: 50%;
-    border: solid 1px rgba(255, 255, 255, 0.15);
+    padding: 3.5em 2em 1em 2em;
+    width: 42%;
+    // border-top: solid 1px rgba(255, 255, 255, 0.15);
     position: relative;
+    height: 320px;
 }
+
+.wrapper.fade-up > .inner{
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    -moz-transition: opacity 1s ease, -moz-transform 1s ease;
+    -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+    -ms-transition: opacity 1s ease, -ms-transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease;
+    opacity: 1.0;
+}
+
 
 .button{
     -moz-appearance: none;
@@ -71,6 +89,9 @@ i.material-icons{
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 20px;
 
     &:hover {
         background-color: #FFFFFF69;
@@ -83,8 +104,12 @@ i.material-icons{
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
     border-radius: 0.25em;
     border: solid 1px rgba(255, 255, 255, 0.15);
     background: rgba(255, 255, 255, 0.05);
-    margin: 0 0 2em 0;
+    margin: 0 0 0 0;
 }
