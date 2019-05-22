@@ -16,7 +16,6 @@ const routes: Routes = [
   { path: '', component: HomepageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: RegisterComponent},
-  { path: 'admin', component: AdminComponent,resolve: { data: UserResolver }},
   { path: 'admin', component: AdminComponent,resolve: { data: UserResolver }, children: [
     { path: 'overview/:id', component: OverviewComponent },
     { path: ':section/edit/:id', component: EditItemComponent },

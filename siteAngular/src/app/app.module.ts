@@ -37,7 +37,6 @@ export const firebaseConfig = environment.firebaseConfig;
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UserResolver } from './auth/core/user.resolver';
 import { HomeComponent } from './admin/home/home.component';
-import { AdminRoutingModule } from './admin/admin-routing.module';
 import { AdminModule } from './admin/admin.module'
 
 
@@ -72,7 +71,6 @@ import {MatCardModule} from '@angular/material/card';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     ReactiveFormsModule,
     HttpClientModule,
-    AdminRoutingModule,
     MatCardModule,
     AdminModule,
     DragDropModule,

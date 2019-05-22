@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminRoutingModule } from './admin-routing.module';
 import { OverviewComponent } from './overview/overview.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatButtonModule} from '@angular/material/button';
@@ -20,7 +19,6 @@ import { GlobalSettingsComponent } from './global-settings/global-settings.compo
   declarations: [OverviewComponent, EditItemComponent, GlobalSettingsComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule,
     DragDropModule,
     MatButtonModule,
     MatTableModule,
