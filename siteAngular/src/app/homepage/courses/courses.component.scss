@@ -1,0 +1,37 @@
+/* Spotlights */
+
+.spotlights > section > .image:before {
+    opacity: 0 !important;
+}
+
+.spotlights > section > .content > .inner {
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+}
+
+.wrapper.fullscreen {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.inner{
+    padding:10rem;
+
+    @media screen and (max-width: 736px) {
+        padding:10rem 0 0 5rem;
+    }
+}

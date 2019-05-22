@@ -30,9 +30,13 @@
       </mat-form-field>
 
 
-    <div>
+    <div *ngIf="!loading">
       <button mat-stroked-button color="primary" [disabled]="!editDocument.valid" (click)="submit()" type="button">Save</button>
       <button mat-stroked-button color="warning" (click)="cancel()">Cancel</button>
+      <button mat-stroked-button color="danger" *ngIf="!addItemCheck" (click)="deleteItem()"  type="button">Delete</button>
+    </div>
+    <div *ngIf="loading">
+      <img src="../../../assets/images/loading.svg" style="width:10%">
     </div>
 
   </form>

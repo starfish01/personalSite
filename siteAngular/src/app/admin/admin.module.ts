@@ -13,10 +13,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule, MatInputModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
+import { GlobalSettingsComponent } from './global-settings/global-settings.component';
 
 
 @NgModule({
-  declarations: [OverviewComponent, EditItemComponent],
+  declarations: [OverviewComponent, EditItemComponent, GlobalSettingsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

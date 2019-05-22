@@ -18,6 +18,8 @@ export class EditItemComponent implements OnInit {
     parent: null
   }
 
+  loading = false;
+
   addItemCheck = false;
 
   editDocument: FormGroup;
@@ -52,10 +54,13 @@ export class EditItemComponent implements OnInit {
     enabled: false
   }
 
+  private _subscription:Subscription
+
+
   getDocument() {
 
     this.itemObservable = this.sitedata.getSingleDocument(this.documentOn.parent, this.documentOn.id)
-    this.itemObservable.subscribe((data) => {
+    this._subscription = this.itemObservable.subscribe((data) => {
       this.item = data[0];
       this.initForm();
     })
@@ -88,12 +93,13 @@ export class EditItemComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
 
     if (this.addItemCheck) {
-
-      this.sitedata.addItem(this.documentOn.parent,this.editDocument.value).then((data)=>{
+      this.sitedata.addItem(this.documentOn.parent, this.editDocument.value).then((data) => {
         this.router.navigate(['/admin/overview', this.documentOn.parent])
-      }).catch(()=>{
+      }).catch(() => {
+        this.loading = false;
         console.log('something broke')
       })
 
@@ -101,10 +107,21 @@ export class EditItemComponent implements OnInit {
       this.sitedata.updateDocument(this.editDocument.value, this.documentOn).then((data) => {
         this.router.navigate(['/admin/overview', this.documentOn.parent])
       }).catch(() => {
+        this.loading = false;
         console.log('Something Broke...')
       })
     }
+  }
 
+  deleteItem(){
+    this.loading = true;
+    this._subscription.unsubscribe();
+    this.sitedata.deleteItem(this.documentOn.id,this.documentOn.parent).then((data)=>{
+      this.router.navigate(['/admin/overview', this.documentOn.parent])
+    }).catch(()=>{
+      console.log('something broke')
+      this.loading = false;
+    })
   }
 
 }

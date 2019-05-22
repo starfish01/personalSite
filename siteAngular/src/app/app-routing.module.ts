@@ -10,6 +10,7 @@ import { HomeComponent } from './admin/home/home.component';
 import { ProjectsComponent } from './homepage/projects/projects.component';
 import { OverviewComponent } from './admin/overview/overview.component';
 import { EditItemComponent } from './admin/edit-item/edit-item.component';
+import { GlobalSettingsComponent } from './admin/global-settings/global-settings.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent,resolve: { data: UserResolver }, children: [
     { path: 'overview/:id', component: OverviewComponent },
     { path: ':section/edit/:id', component: EditItemComponent },
-    { path: ':section/add', component:EditItemComponent }
+    { path: ':section/add', component:EditItemComponent },
+    { path: 'settings', component:GlobalSettingsComponent}
   ]},
 
   { path: "**", redirectTo: '' }    
