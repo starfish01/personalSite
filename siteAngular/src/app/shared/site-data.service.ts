@@ -20,6 +20,10 @@ export class SiteDataService {
     return this.db.collection('projects').valueChanges();
   }
 
+  getCourses(){
+    return this.db.collection('courses').valueChanges();
+  }
+
   getEdits(value) {
     return this.db.collection(value).valueChanges();
   }

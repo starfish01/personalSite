@@ -1,27 +1,15 @@
-<!-- two -->
 <section id="two" class="wrapper style2 spotlights">
-    <section>
+  <ng-container *ngFor="let course of (courses | async)">
+    <section *ngIf="course.enabled == 1">
       <div class="content">
         <div class="inner">
-          <h2>Angular 7 (formerly Angular 2) - The Complete Guide </h2>
-          <p>Completed 10/05/2019</p>
-          <ul class="actions">
-            <li><a class="button" href="https://www.udemy.com/certificate/UC-E46DOJC9/"
-                target="_blank">Link</a></li>
-          </ul>
+          <h2>{{course.title}}</h2>
+          <p>{{course.description}}</p>
+          <ng-container *ngIf="course.buttonUrl.length > 0">
+            <a class="button" href="{{ course.buttonUrl }}" target="_blank">Link</a>
+          </ng-container>
         </div>
       </div>
     </section>
-    <section>
-      <div class="content">
-        <div class="inner">
-          <h2> Vue JS 2 - The Complete Guide (incl. Vue Router & Vuex)</h2>
-          <p>Completed 16/11/2018</p>
-          <ul class="actions">
-            <li><a class="button" href="https://www.udemy.com/certificate/UC-WB1S3A44/"
-                target="_blank">Link</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </section>
+  </ng-container>
+</section>

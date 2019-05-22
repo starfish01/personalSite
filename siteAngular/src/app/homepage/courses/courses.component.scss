@@ -1,3 +1,12 @@
+#two {
+    background-attachment: fixed;
+    background-color: #7C7C7C;
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 100vh;
+  }
+
 /* Spotlights */
 
 .spotlights > section > .image:before {
@@ -29,9 +38,48 @@
 }
 
 .inner{
-    padding:10rem;
+    padding:5rem;
 
     @media screen and (max-width: 736px) {
-        padding:10rem 0 0 5rem;
+        padding:5rem 0 0 5rem;
     }
+}
+
+li {
+    list-style-type: none;
+}
+
+.button{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: border-color 0.2s ease;
+    -webkit-transition: border-color 0.2s ease;
+    -ms-transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease;
+    background-color: transparent;
+    border: solid 1px !important;
+    border-color: rgb(255, 255, 255) !important;
+    border-radius: 3em;
+    color: #fff !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.6em;
+    font-weight: bold;
+    height: calc(4.75em + 2px);
+    letter-spacing: 0.25em;
+    line-height: 4.75em;
+    outline: 0;
+    padding: 0 3.75em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &:hover {
+        background-color: #FFFFFF69;
+        border-color: #ffffff !important;}
+
 }
