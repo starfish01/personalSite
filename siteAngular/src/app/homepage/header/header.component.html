@@ -3,10 +3,10 @@
     <nav class="desktop-nav-menu">
       <ul>
         <ng-container *ngIf="!isAuthenticated()">
-          <li><a href="#intro">Welcome</a></li>
-          <li><a href="#one">Projects Worked On</a></li>
-          <li><a href="#two">Courses Completed</a></li>
-          <li><a href="#three">Get in touch</a></li>
+          <li><a [ngClass]="{active: position === 'intro'}" href="#intro">Welcome</a></li>
+          <li><a [ngClass]="{active: position === 'one'}" href="#one">Projects Worked On</a></li>
+          <li><a [ngClass]="{active: position === 'two'}" href="#two">Courses Completed</a></li>
+          <li><a [ngClass]="{active: position === 'three'}" href="#three">Get in touch</a></li>
         </ng-container>
         <ng-container *ngIf="isAuthenticated()">
           <li><a href="/admin">Admin</a></li>
