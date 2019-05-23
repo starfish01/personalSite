@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page1',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page1Component implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+
+  clicks = 0
+
+  login(){
+    this.clicks ++;
+
+    if(this.clicks == 7){
+      this.router.navigate(['admin'])
+    }
+
   }
 
 }
